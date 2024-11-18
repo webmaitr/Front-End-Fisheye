@@ -6,6 +6,18 @@
     background-color: #FAFAFA;
     height: 300px;
     margin: 0 100px;
+    padding: 56px 50px;
+    box-sizing: border-box;
+    }
+
+.photograph-header h1 {
+    color: #D3573C;
+    font-size: 64px;
+    font-weight: 400;
+    margin: 0;
+}
+.photograph-header img {
+    height: 200px
 }
 
 .contact_button {
