@@ -7,7 +7,6 @@
   function getTheId() {
     let params = new URL(document.location).searchParams;
     let thePhotographerId = params.get("id");
-    //console.log(thePhotographerId);
     return thePhotographerId;
   }
   
@@ -18,88 +17,42 @@
 
     const photographerModel = photographerTemplate(photographer);
     const userCardDOM = photographerModel.getUserCardDOM();
-    /*const userHeaderDOM = photographerModel.getUserHeaderDOM();
-    */
-   photographerHeader.appendChild(userCardDOM);
-
-      }
-  
-  
-    
     
 
+    const headerDOM = userCardDOM.modifyCard();
+    const button = document.querySelector('button');
+    
+    photographerHeader.appendChild(headerDOM.divTitle);
+    photographerHeader.insertBefore(headerDOM.divTitle, button);
+    
+    photographerHeader.appendChild(headerDOM.divImg)
+
+  }
   
+   //display the gallery of the photographer
+  async function displayMedia(photographerMedia) {
+    const mediaSection = document.querySelector(".photograph-media");
+      
+    photographerMedia.forEach ((photo) => {const figureModel = mediaTemplate(photo);
+      const figureDOM = figureModel.setGallery();
+      mediaSection.appendChild(figureDOM);
+    })
+    
+  }   
+
+
 
   async function init() {
     const photographerID = getTheId();
-    const {photographers} = await getPhotographers();
+    const {photographers, media} = await getPhotographers();
     const index = photographers.findIndex(element => element.id == photographerID);
     displayHeader(photographers[index]);
     
+    const myMedia = media.filter(element => element.photographerId == photographerID);
+    displayMedia(myMedia);
   }
   
   init();
 
 
-/*
-   //get the data of the photographer
-  async function getThePhotographer() {    
-    const { photographers } = await getPhotographers();  
-    const thePhotographer = photographers.filter(index => index.id == getTheId());
-    return thePhotographer;
-  }
 
-  //get the media of the photographer  
-  async function getThePhotographerMedia() {
-    const { media } = await getPhotographers();
-    const thePhotographerMedia = media.filter(index => index.photographerId == getTheId());
-    return thePhotographerMedia;
-  }
-  
-  //display the photographer header
-  async function displayData(photographer) {
-    const photographerSection = document.querySelector(".photograph-header");
-        const photographerModel = photographerTemplate(photographer);
-        const userCardDOM = photographerModel.getUserCardDOM();
-        photographerSection.appendChild(userCardDOM);
-  };
-
-  //display the gallery of the photographer
-  /*async function displayMedia(photographer) {
-    const mediaSection = document.querySelector(".photograph-media");
-      const galleryModel = setGallery(photographer);
-      const gallery = galleryModel.setGallery();
-      mediaSection.appendChild(gallery);
-  }
-
-
-
-  */
-/*
-  async function init() {
-    const myPhotographer = await getThePhotographer();
-    displayData(myPhotographer[0]);
-    
-    const photographerSection = document.querySelector('.photograph-header');
-    const button = document.querySelector('button');
-    const article = document.querySelector('article');
-    const h1 = document.createElement('h1');
-    const h2 = document.querySelector('a h2');
-    const img = document.querySelector('a img');
-    const a = document.querySelector('article a');
-    const text = document.getElementsByTagName('p');photographerSection.insertBefore(img, article);
-      for (const p of text) {
-        photographerSection.insertBefore(p, article)
-      }
-    h1.innerText = h2.innerText;
-    photographerSection.appendChild(h1);
-    photographerSection.insertBefore(h1, button);
-    photographerSection.removeChild(article); 
-
-
-  };
-  init()
-  
-  
-  getThePhotographerMedia();
-*/
