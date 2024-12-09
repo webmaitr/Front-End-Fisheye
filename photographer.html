@@ -18,6 +18,12 @@
       <div class="photograph-header">
         <button class="contact_button">Contactez-moi</button>
       </div>
+      <label for="mediaSelect">Trier par</label> 
+      <select id="mediaSelect" name="mediaSelected">
+        <option value="likes">Popularité</option>
+        <option value="date">Date</option>
+        <option value="title">Titre</option>
+      </select>
       <div class="photograph-media"></div>
     </main>
     <div id="contact_modal">
@@ -50,7 +56,8 @@
     <script src="/scripts/pages/fetchdata.js">
     </script><script src="/scripts/templates/photographerTemplate.js"></script>
     <script src="/scripts/pages/photographer.js"></script>
-    <script src="/scripts/utils/likes.js"></script>
+    <script src="/scripts/utils/totalLikes.js"></script>
+    <!-- <script src="/scripts/utils/sort.js"></script> -->
     <script src="/scripts/utils/contactForm.js"></script>
   </body>
 </html>

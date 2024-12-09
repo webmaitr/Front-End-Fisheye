@@ -37,10 +37,8 @@
       const figureDOM = figureModel.setGallery();
       mediaSection.appendChild(figureDOM);
     })
-    
+
   }   
-
-
 
   async function init() {
     const photographerID = getTheId();
@@ -48,10 +46,44 @@
     const index = photographers.findIndex(element => element.id == photographerID);
     displayHeader(photographers[index]);
     
-    const myMedia = media.filter(element => element.photographerId == photographerID);
+    let myMedia = media.filter(element => element.photographerId == photographerID);
+
+    // initial sort by number of likes
+    myMedia = myMedia.sort((a, b) => b.likes - a.likes);
+
+    
+
     displayMedia(myMedia);
-  }
-  
+     
+
+// secondary sort with event
+    const mediaChoice = document.getElementById('mediaSelect');
+    
+
+    mediaChoice.addEventListener('change', (event)=> {      
+    let choice = mediaChoice.value;  
+
+      
+      switch(choice) {
+        case 'title' :
+          myMedia = myMedia.sort((a, b) => a.title.localeCompare(b.title));
+          break;
+        case 'likes' :
+          myMedia = myMedia.sort((a, b) => b.likes - a.likes);
+          break;
+        case 'date' :
+          myMedia = myMedia.sort((a, b) => b.date.localeCompare(a.date));
+          break;
+      }
+      
+
+      const initialContent = document.querySelector('.photograph-media');
+      initialContent.innerHTML = '';
+      displayMedia(myMedia);
+    });
+  countTotalLikes();
+  };
+
   init();
 
 

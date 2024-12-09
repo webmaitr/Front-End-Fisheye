@@ -31,10 +31,18 @@ function photographerTemplate(data) {
             h1.innerText = name;
             const divTitle = document.createElement('div');
             const divImg = document.createElement('div');
+            const divInset = document.createElement('div');
+            divInset.setAttribute('class', 'total_likes_fee');
+            const iconLike = document.createElement('i');
+            iconLike.innerHTML = '<span class="material-symbols-outlined">favorite</span>';
+            const nbTotLikes = document.createElement('p');
             divTitle.appendChild(h1);
             divTitle.appendChild(location)
             divTitle.appendChild(tag);
-            divTitle.appendChild(fee);
+            divInset.appendChild(nbTotLikes);
+            divInset.appendChild(iconLike);
+            divInset.appendChild(fee);
+            divTitle.appendChild(divInset);
             divImg.appendChild(img);
             return {divTitle, divImg};
         }
@@ -60,7 +68,10 @@ function mediaTemplate(data) {
             med.setAttribute("src", imgSrc);
         } else {
             med = document.createElement('video');
-            med.setAttribute("src", vidSrc);
+            med.setAttribute("controls", "true");
+            source = document.createElement('source');
+            source.setAttribute("src", vidSrc)
+            med.appendChild(source)
         }
         const foot = document.createElement('div');
         const caption = document.createElement('p');
@@ -71,14 +82,25 @@ function mediaTemplate(data) {
         nbOfLikes.setAttribute('class', 'nb_likes');
         const iconLike = document.createElement('i');
         iconLike.innerHTML = '<span class="material-symbols-outlined">favorite</span>';
+    
       
         divMedia.appendChild(med);
         foot.appendChild(caption);
-
         likeDiv.appendChild(nbOfLikes);
         likeDiv.appendChild(iconLike);
         foot.appendChild(likeDiv);
         divMedia.appendChild(foot);
+    
+
+    //managing new likes
+        iconLike.addEventListener('click', function(e) {
+            let newlikes = likes;
+            newlikes++;
+            nbOfLikes.innerText = newlikes;
+            
+           countTotalLikes()
+        }, {once:true});
+        
         return (divMedia);
     }
 
