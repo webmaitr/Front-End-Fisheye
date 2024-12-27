@@ -9,6 +9,7 @@ function photographerTemplate(data) {
         const article = document.createElement( 'article' );
         const link = document.createElement('a');
         link.setAttribute("href", `photographer.html?id=${id}`);
+        link.setAttribute("title", `lien vers gallery de ${name}`)
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture);
         img.setAttribute("alt", `photo portrait de ${name}`);
@@ -28,6 +29,7 @@ function photographerTemplate(data) {
         article.appendChild(tag);
         article.appendChild(fee);
         
+        //same data but modified order for photographer in own gallery page
         function modifyCard (){
             const h1 = document.createElement('h1');
             h1.innerText = name;
@@ -53,7 +55,7 @@ function photographerTemplate(data) {
     return { name, picture, getUserCardDOM } 
 }
 
-
+//seting template for gallery of medias
 function mediaTemplate(data) {
     const {image, video, title, photographerId, likes} = data;
     const imgSrc = `assets/photos/${photographerId}/${image}`;
@@ -62,17 +64,20 @@ function mediaTemplate(data) {
         const divMedia = document.createElement('div');
         divMedia.setAttribute("class", "gallery-item");
         const medLink = document.createElement('a');
-        medLink.setAttribute("href", "javascript:void(0)"); 
+        medLink.setAttribute("href", "javascript:void(0)");
+        medLink.setAttribute("title", "lien vers la lightbox"); 
         let med;
         if (image) {
             med = document.createElement('img');
             med.setAttribute("src", imgSrc);
+
         } else {
             med = document.createElement('video');
             source = document.createElement('source');
             source.setAttribute("src", vidSrc)
             med.appendChild(source)
         }
+        med.setAttribute("alt", title);
         const foot = document.createElement('div');
         const caption = document.createElement('p');
         caption.innerText = title;
@@ -92,7 +97,7 @@ function mediaTemplate(data) {
         divMedia.appendChild(foot);
     
 
-    //managing new likes
+        //managing new likes
         iconLike.addEventListener('click', function(e) {
             let newlikes = likes;
             newlikes++;

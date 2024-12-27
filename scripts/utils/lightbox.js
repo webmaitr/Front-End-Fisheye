@@ -1,5 +1,4 @@
 
-
 function deleteMedia () {
   const mediaDeleted = document.querySelector('.media_lightbox');
   mediaDeleted.innerHTML = '';
@@ -10,6 +9,13 @@ function closeLightbox() {
   const lightbox = document.getElementById("lightbox");
   lightbox.style.display = "none";
 }
+
+const closeLightboxIcon = document.querySelector(".modal_lightbox img:first-of-type");
+closeLightboxIcon.addEventListener("click", closeLightbox);
+
+closeLightboxIcon.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {closeLightbox();};
+})
 
 
 function setLightbox() {
@@ -29,22 +35,12 @@ function setLightbox() {
     const lightbox = document.getElementById("lightbox");
     lightbox.style.display = "block";
 
-    // //put selected media inside the lightbox
-    // const mediaModal = document.querySelector('.media_lightbox');
-    // const myMedia = e.target;
-    // mediaModal.appendChild(myMedia);
-    // console.log(myMedia.value);
 
     // catching index of current image or video
     let myIndex = lightboxMedias.indexOf(e.currentTarget);
-    console.log(myIndex);
-    console.log(e.currentTarget);
-    
+  
     const mediaModal = document.querySelector('.media_lightbox');
     const myMedia = mediaList[myIndex];
-    console.log(mediaList);
-    console.log(myMedia);
-    console.log(mediaModal);
     mediaModal.innerHTML = myMedia;
 
       // setting listener on back and forward arrows
@@ -52,6 +48,14 @@ function setLightbox() {
       const back = document.getElementById("left");
       forward.addEventListener("click", moveForward);
       back.addEventListener("click", moveBack);
+
+      document.addEventListener("keydown", (e)=> {
+        console.log(e.key);
+        if (e.key === " " || e.key === "ArrowRight") {moveForward()}
+        else if (e.key === "ArrowLeft") {moveBack()}
+        else if (e.key === "Escape") {closeLightbox()};
+      })
+
 
       function moveForward() {       
         const slideRight = document.querySelector('.media_lightbox');
@@ -64,6 +68,8 @@ function setLightbox() {
           myIndex = 0;
         }
       }
+
+      
 
       function moveBack() {
         const slideRight = document.querySelector('.media_lightbox');

@@ -3,6 +3,10 @@ function displayModal(e) {
     e.stopPropagation;
     const modal = document.getElementById("contact_modal");
 	modal.style.display = "block";
+
+    document.addEventListener("keydown", (e)=> {
+        if (e.key === "Escape") {closeModal()};
+    })
 }
 
 function closeModal() {
@@ -14,8 +18,7 @@ const closeModalIcon = document.querySelector(".modal img");
 closeModalIcon.addEventListener("click", closeModal);
 
 closeModalIcon.addEventListener("keydown", (e) => {
-    console.log(e.keyCode);
-    if (e.keyCode === 13) {closeModal();};
+    if (e.key === "Enter") {closeModal();};
 })
 
 function setContactFormTitle () {

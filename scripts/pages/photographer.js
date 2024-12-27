@@ -51,16 +51,13 @@
     myMedia = myMedia.sort((a, b) => b.likes - a.likes);
 
     displayMedia(myMedia);
-  
 
-// secondary sort with event
-  sortMedias(myMedia);  
+
   countTotalLikes();   
   setLightbox();
-  
+  sortMedias(myMedia);
 
   };
 
 init();
-
 

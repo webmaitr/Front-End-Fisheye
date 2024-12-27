@@ -11,13 +11,13 @@
   </head>
   <body>
     <header role="banner">
-      <a href="index.html">
+      <a href="index.html" title="retour vers la page d'accueil">
         <img src="assets/images/logo.png" class="logo" alt="fisheye logo"/>
       </a>
     </header>
     <main id="main">
       <section class="photograph-header">
-        <button class="contact_button" role="ouvre modale formulaire de contact">Contactez-moi</button>
+        <button class="contact_button" type="button" aria-label="ouvre modale formulaire de contact">Contactez-moi</button>
       </section>
      
       <!-- div for modal form -->
@@ -25,7 +25,7 @@
         <div class="modal">
           <header>
             <h2>Contactez-moi</h2>
-            <img src="assets/icons/close.svg" tabindex=0 role="close modale"/>
+            <img src="assets/icons/close.svg" alt="icone croix pour fermer" tabindex=0 aria-label="close modale"/>
           </header>
           <form>
             <div>
@@ -67,10 +67,10 @@
     <!-- div for lightbox -->
     <div id="lightbox" class="modal_back">
       <div class="modal_lightbox">
-        <img src="assets/icons/close-black.svg" onclick="closeLightbox()" />
-        <img id="left" src="assets/icons/chevron-left.svg"  />
+        <img src="assets/icons/close-black.svg" alt="icone croix pour fermer" tabindex=0 aria-label="close lightbox"/>
+        <img id="left" src="assets/icons/chevron-left.svg" alt="icone chevron pour avancer" tabindex=0 aria-label="go to next picture"/>
         <div class="media_lightbox"></div>
-        <img id="right" src="assets/icons/chevron-right.svg" />
+        <img id="right" src="assets/icons/chevron-right.svg" alt="icone chevron pour reculer" tabindex=0 aria-label="go back to former picture"/>
       </div>
     </div>
 

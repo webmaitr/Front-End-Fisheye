@@ -23,8 +23,5 @@ function sortMedias(media) {
       initialContent.innerHTML = '';
       displayMedia(media);
       setLightbox();
-          
-          
   });
-
 }
