@@ -11,10 +11,12 @@ function photographerTemplate(data) {
         link.setAttribute("href", `photographer.html?id=${id}`);
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture);
+        img.setAttribute("alt", `photo portrait de ${name}`);
         const h2 = document.createElement( 'h2' );
         h2.textContent = name;
         const location = document.createElement('p');
         location.textContent = city + ", " + country;
+        location.setAttribute("lang", "en");
         const tag = document.createElement('p');
         tag.textContent = tagline;
         const fee = document.createElement('p');
@@ -48,9 +50,6 @@ function photographerTemplate(data) {
         }
         return {article, modifyCard};
     }
-    
-
- 
     return { name, picture, getUserCardDOM } 
 }
 
@@ -62,13 +61,14 @@ function mediaTemplate(data) {
     function setGallery() {
         const divMedia = document.createElement('div');
         divMedia.setAttribute("class", "gallery-item");
+        const medLink = document.createElement('a');
+        medLink.setAttribute("href", "javascript:void(0)"); 
         let med;
         if (image) {
             med = document.createElement('img');
             med.setAttribute("src", imgSrc);
         } else {
             med = document.createElement('video');
-            med.setAttribute("controls", "true");
             source = document.createElement('source');
             source.setAttribute("src", vidSrc)
             med.appendChild(source)
@@ -83,8 +83,8 @@ function mediaTemplate(data) {
         const iconLike = document.createElement('i');
         iconLike.innerHTML = '<span class="material-symbols-outlined">favorite</span>';
     
-      
-        divMedia.appendChild(med);
+        medLink.appendChild(med);
+        divMedia.appendChild(medLink);
         foot.appendChild(caption);
         likeDiv.appendChild(nbOfLikes);
         likeDiv.appendChild(iconLike);

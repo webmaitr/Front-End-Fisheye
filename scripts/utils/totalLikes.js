@@ -1,5 +1,5 @@
 //inserting initial total likes
-function countTotalLikes () {
+  function countTotalLikes () {
   const allLikes = document.querySelectorAll('.nb_likes');
   let totalLikes = 0;
   allLikes.forEach(element => {

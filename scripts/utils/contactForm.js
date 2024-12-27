@@ -1,8 +1,8 @@
 
-function displayModal() {
+function displayModal(e) {
+    e.stopPropagation;
     const modal = document.getElementById("contact_modal");
 	modal.style.display = "block";
-
 }
 
 function closeModal() {
@@ -10,13 +10,19 @@ function closeModal() {
     modal.style.display = "none";
 }
 
-function printModalTitle() {
-    const photographerName = document.querySelector('h1');
-    console.log(photographerName.innerText);
-    const modalTitle = document.querySelector('.modal h2');
-    console.log(modalTitle.innerText);
-    modalTitle.innerText += "\n" + photographerName.innerText;
-}
+const closeModalIcon = document.querySelector(".modal img");
+closeModalIcon.addEventListener("click", closeModal);
+
+closeModalIcon.addEventListener("keydown", (e) => {
+    console.log(e.keyCode);
+    if (e.keyCode === 13) {closeModal();};
+})
+
+function setContactFormTitle () {
+    const nameForm = document.querySelector("h1").innerHTML;
+    let contactFormTitle = document.querySelector(".modal h2");
+    contactFormTitle.innerHTML += `<br>${nameForm}`;
+  }
 
 const contactButton = document.querySelector('.photograph-header .contact_button');
 contactButton.addEventListener('click', displayModal);

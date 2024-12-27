@@ -1,7 +1,3 @@
-//Mettre le code JavaScript lié à la page photographer.html
-
-
-
   
   //get the id of the photographer from url
   function getTheId() {
@@ -10,6 +6,8 @@
     return thePhotographerId;
   }
   
+
+
   //display data of the photographer header
 
   async function displayHeader(photographer) {
@@ -25,8 +23,9 @@
     photographerHeader.appendChild(headerDOM.divTitle);
     photographerHeader.insertBefore(headerDOM.divTitle, button);
     
-    photographerHeader.appendChild(headerDOM.divImg)
+    photographerHeader.appendChild(headerDOM.divImg);
 
+    setContactFormTitle ();
   }
   
    //display the gallery of the photographer
@@ -51,40 +50,17 @@
     // initial sort by number of likes
     myMedia = myMedia.sort((a, b) => b.likes - a.likes);
 
-    
-
     displayMedia(myMedia);
-     
+  
 
 // secondary sort with event
-    const mediaChoice = document.getElementById('mediaSelect');
-    
+  sortMedias(myMedia);  
+  countTotalLikes();   
+  setLightbox();
+  
 
-    mediaChoice.addEventListener('change', (event)=> {      
-    let choice = mediaChoice.value;  
-
-      
-      switch(choice) {
-        case 'title' :
-          myMedia = myMedia.sort((a, b) => a.title.localeCompare(b.title));
-          break;
-        case 'likes' :
-          myMedia = myMedia.sort((a, b) => b.likes - a.likes);
-          break;
-        case 'date' :
-          myMedia = myMedia.sort((a, b) => b.date.localeCompare(a.date));
-          break;
-      }
-      
-
-      const initialContent = document.querySelector('.photograph-media');
-      initialContent.innerHTML = '';
-      displayMedia(myMedia);
-    });
-  countTotalLikes();
   };
 
-  init();
-
+init();
 
 
