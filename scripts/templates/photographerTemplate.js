@@ -9,7 +9,7 @@ function photographerTemplate(data) {
         const article = document.createElement( 'article' );
         const link = document.createElement('a');
         link.setAttribute("href", `photographer.html?id=${id}`);
-        link.setAttribute("title", `lien vers gallery de ${name}`)
+        link.setAttribute("title", `vers gallery de ${name}`);
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture);
         img.setAttribute("alt", `photo portrait de ${name}`);
@@ -38,7 +38,7 @@ function photographerTemplate(data) {
             const divInset = document.createElement('div');
             divInset.setAttribute('class', 'total_likes_fee');
             const iconLike = document.createElement('i');
-            iconLike.innerHTML = '<span class="material-symbols-outlined">favorite</span>';
+            iconLike.innerHTML = '<span class="material-symbols-outlined" role="img" aria-label="icone like">favorite </span>';
             const nbTotLikes = document.createElement('p');
             divTitle.appendChild(h1);
             divTitle.appendChild(location)
@@ -57,7 +57,7 @@ function photographerTemplate(data) {
 
 //seting template for gallery of medias
 function mediaTemplate(data) {
-    const {image, video, title, photographerId, likes} = data;
+    const {image, video, title, photographerId, likes, date} = data;
     const imgSrc = `assets/photos/${photographerId}/${image}`;
     const vidSrc = `assets/photos/${photographerId}/${video}`;
     function setGallery() {
@@ -65,7 +65,7 @@ function mediaTemplate(data) {
         divMedia.setAttribute("class", "gallery-item");
         const medLink = document.createElement('a');
         medLink.setAttribute("href", "javascript:void(0)");
-        medLink.setAttribute("title", "lien vers la lightbox"); 
+        medLink.setAttribute("title", "vers la lightbox"); 
         let med;
         if (image) {
             med = document.createElement('img');
@@ -73,7 +73,7 @@ function mediaTemplate(data) {
 
         } else {
             med = document.createElement('video');
-            source = document.createElement('source');
+            let source = document.createElement('source');
             source.setAttribute("src", vidSrc)
             med.appendChild(source)
         }
@@ -86,7 +86,7 @@ function mediaTemplate(data) {
         nbOfLikes.innerText = likes;
         nbOfLikes.setAttribute('class', 'nb_likes');
         const iconLike = document.createElement('i');
-        iconLike.innerHTML = '<span class="material-symbols-outlined">favorite</span>';
+        iconLike.innerHTML = '<span class="material-symbols-outlined" role="img" aria-label="icone like" tabindex=0>favorite</span>';
     
         medLink.appendChild(med);
         divMedia.appendChild(medLink);
@@ -95,22 +95,12 @@ function mediaTemplate(data) {
         likeDiv.appendChild(iconLike);
         foot.appendChild(likeDiv);
         divMedia.appendChild(foot);
-    
 
-        //managing new likes
-        iconLike.addEventListener('click', function(e) {
-            let newlikes = likes;
-            newlikes++;
-            nbOfLikes.innerText = newlikes;
-            
-           countTotalLikes()
-        }, {once:true});
-        
         return (divMedia);
     }
 
    
     
-    return {likes, setGallery};
+    return {title, likes, date, setGallery};
 }
 

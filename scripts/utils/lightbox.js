@@ -7,7 +7,11 @@ function deleteMedia () {
 function closeLightbox() {
   deleteMedia();
   const lightbox = document.getElementById("lightbox");
+  const headPage = document.querySelector(".photograph-header");
+  const wrapper = document.querySelector(".photograph-media");
   lightbox.style.display = "none";
+  headPage.ariaHidden="false";
+  wrapper.removeAttribute("inert");
 }
 
 const closeLightboxIcon = document.querySelector(".modal_lightbox img:first-of-type");
@@ -29,11 +33,18 @@ function setLightbox() {
   // gathering img and video in an array
   const mediaList = lightboxMedias.map((media) => media.innerHTML);  
   
-
     //display lightbox
     function displayLightbox(e) {
     const lightbox = document.getElementById("lightbox");
+    const headPage = document.querySelector(".photograph-header");
+    const forward = document.getElementById("right");
+    const wrapper = document.querySelector(".photograph-media");
     lightbox.style.display = "block";
+    headPage.ariaHidden="true";
+
+    wrapper.setAttribute("inert", "true");
+
+
 
 
     // catching index of current image or video
@@ -44,14 +55,13 @@ function setLightbox() {
     mediaModal.innerHTML = myMedia;
 
       // setting listener on back and forward arrows
-      const forward = document.getElementById("right");
+      // const forward = document.getElementById("right");
       const back = document.getElementById("left");
       forward.addEventListener("click", moveForward);
       back.addEventListener("click", moveBack);
 
       document.addEventListener("keydown", (e)=> {
-        console.log(e.key);
-        if (e.key === " " || e.key === "ArrowRight") {moveForward()}
+        if (e.key === " " || e.key === "ArrowRight" || (e.key === "Enter" && forward.focus)) {moveForward()}
         else if (e.key === "ArrowLeft") {moveBack()}
         else if (e.key === "Escape") {closeLightbox()};
       })
@@ -69,8 +79,6 @@ function setLightbox() {
         }
       }
 
-      
-
       function moveBack() {
         const slideRight = document.querySelector('.media_lightbox');
         deleteMedia();
@@ -82,11 +90,7 @@ function setLightbox() {
           myIndex = mediaList.length;
         }
       }
-
-
     }
-
-    
 }
 
 

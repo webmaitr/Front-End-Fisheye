@@ -2,7 +2,10 @@
 function displayModal(e) {
     e.stopPropagation;
     const modal = document.getElementById("contact_modal");
+
 	modal.style.display = "block";
+
+
 
     document.addEventListener("keydown", (e)=> {
         if (e.key === "Escape") {closeModal()};

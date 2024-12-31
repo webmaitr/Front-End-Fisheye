@@ -27,37 +27,59 @@
 
     setContactFormTitle ();
   }
-  
+
+  async function initHeader() {
+    const photographerID = getTheId();
+    const {photographers} = await getPhotographers();
+    const index = photographers.findIndex(element => element.id == photographerID);
+    displayHeader(photographers[index]);
+  }
+
+  displaySelectList();
+
    //display the gallery of the photographer
   async function displayMedia(photographerMedia) {
     const mediaSection = document.querySelector(".photograph-media");
       
     photographerMedia.forEach ((photo) => {const figureModel = mediaTemplate(photo);
       const figureDOM = figureModel.setGallery();
+
+   
+      
       mediaSection.appendChild(figureDOM);
+       countTotalLikes();      
     })
 
   }   
 
-  async function init() {
+  async function initMedia() {
     const photographerID = getTheId();
-    const {photographers, media} = await getPhotographers();
-    const index = photographers.findIndex(element => element.id == photographerID);
-    displayHeader(photographers[index]);
-    
+    const {media} = await getPhotographers();
+   
     let myMedia = media.filter(element => element.photographerId == photographerID);
 
-    // initial sort by number of likes
-    myMedia = myMedia.sort((a, b) => b.likes - a.likes);
+  
+    const mediaSelect = document.getElementById("mediaSelect"); 
+    let mediaChoice = mediaSelect.innerText;
+    switch(mediaChoice) {
+              case 'Titre' :
+                myMedia = myMedia.sort((a, b) => a.title.localeCompare(b.title));
+                break;
+              case 'Popularité' :
+                myMedia = myMedia.sort((a, b) => b.likes - a.likes);
+                break;
+              case 'Date' :
+                myMedia = myMedia.sort((a, b) => b.date.localeCompare(a.date));
+                break;
+    }
+  
 
     displayMedia(myMedia);
-
-
-  countTotalLikes();   
+  
+  getNewLikes();
   setLightbox();
-  sortMedias(myMedia);
-
+    
   };
 
-init();
-
+  initHeader();
+  initMedia();
