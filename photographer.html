@@ -9,22 +9,23 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=favorite" />
     <title>Fisheye - photographe </title>
   </head>
+  
   <body>
     <header role="banner">
       <a href="index.html" title="retour vers la page d'accueil">
         <img src="assets/images/logo.png" class="logo" alt="fisheye logo"/>
       </a>
     </header>
-    <main id="main">
-      <section class="photograph-header">
+    <main id="main" aria-hidden="false">
+      <section class="photograph-header" aria-hidden="false">
         <button class="contact_button" type="button" aria-label="ouvre modale formulaire de contact">Contactez-moi</button>
       </section>
      
       <!-- div for modal form -->
-      <div id="contact_modal" class="modal_back">
-        <div class="modal">
+      <div id="contact_modal" class="modal_back" role="dialog" aria-describedby="contact" aria-hidden="true">
+        <div class="modal" >
           <header>
-            <h2>Contactez-moi</h2>
+            <h2 id="contact">Contactez-moi</h2>
             <img src="assets/icons/close.svg" alt="icone croix pour fermer" tabindex=0 aria-label="close modale"/>
           </header>
           <form>
@@ -50,22 +51,24 @@
       </div>
 
 
-      <section>
-          <label for="mediaSelect">Trier par</label> 
-          <select id="mediaSelect" name="mediaSelected">
-            <option value="likes">Popularité</option>
-            <option value="date">Date</option>
-            <option value="title">Titre</option>
-          </select>
+      <section class="photo-gallery">
+        <div class="sort-gallery">
+          <p>Trier par</p>
+ 
 
+          <ul>
+            <li id="mediaSelect" tabindex="0">Popularité <span><img src="assets/icons/chevron-up.svg" alt=""></span></li>
+            <li class="select" tabindex="0">Date</li>
+            <li class="select" tabindex="0">Titre</li>
+          </ul>
+        </div>
         <div class="photograph-media"></div>
+
       </section>
     </main>
     
-    
-    
     <!-- div for lightbox -->
-    <div id="lightbox" class="modal_back">
+    <div id="lightbox" class="modal_back" role="dialog">
       <div class="modal_lightbox">
         <img src="assets/icons/close-black.svg" alt="icone croix pour fermer" tabindex=0 aria-label="close lightbox"/>
         <img id="left" src="assets/icons/chevron-left.svg" alt="icone chevron pour avancer" tabindex=0 aria-label="go to next picture"/>

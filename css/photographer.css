@@ -18,6 +18,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 10px;
     }
 
 .photograph-header h1 {
@@ -69,13 +70,11 @@ body {
 }
 
 .contact_button:hover, 
-.contact_button:focus,
-select#mediaSelect:hover,
-select#mediaSelect:focus {
+.contact_button:focus {
     background-color: #DB8876;
 }
 
-select#mediaSelect {
+/* select#mediaSelect {
     margin: 20px 25px 58px;
     background-color: #901C1C;
     border-radius: 5px;
@@ -85,7 +84,62 @@ select#mediaSelect {
     color: white;
     height: 70px;
     padding-left: 20px;
+} */
+
+/* home-made select input*/
+.sort-gallery {
+    position: relative;
+    display: flex;
+    margin-bottom: 20px;
 }
+
+.sort-gallery > p {
+    font-size: 18px;
+    font-weight: 700;
+    margin-right: 25px;
+}
+
+.sort-gallery ul {
+    position: absolute;
+    z-index: 100;
+    left: 96px;
+    list-style: none;
+    background-color: #901c1c;
+    padding: 10px;
+    margin: 0;
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+    width: 170px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.sort-gallery ul li {
+    text-align: left;
+    flex: 1, 0, 50px;
+    height: 50px;
+    align-content: center;
+    padding-left: 10px;
+}
+
+#mediaSelect img {
+    width: 16px;
+    height: 16px;
+}
+
+#mediaSelect {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.select {
+    border-top: 1px solid white;
+    display: none;
+}
+
 
 label[for=mediaSelect] {
     font-size : 18px;
@@ -104,13 +158,6 @@ label[for=mediaSelect] {
     width: 350px;
     height: 351px;
     object-fit: cover;
-}
-
-.photograph-media img:hover,
-.photograph-media img:focus,
-.photograph-media video:hover,
-.photograph-media video:focus {
-    opacity: 30%;
 }
 
 
@@ -133,6 +180,7 @@ label[for=mediaSelect] {
 
 .modal_back {
     position: fixed;
+    z-index: 200;
     top: 0;
     bottom: 0;
     left: 0;
@@ -146,6 +194,7 @@ label[for=mediaSelect] {
     background-color: #DB8876;
     width: 50%;
     max-width: 669px;
+    max-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -193,7 +242,7 @@ form div {
 
 form input {
     width: 100%;
-    height: 68px;
+    height: 5vh;
     border: none;
     border-radius: 5px;
 }
@@ -201,7 +250,7 @@ form input {
 form textarea {
     display: block;
     width: 100%;
-    height: 170px;
+    height: 15vh;
     border: none;
     border-radius: 5px;
     margin-bottom: 26px;

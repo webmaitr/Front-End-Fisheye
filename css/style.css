@@ -29,10 +29,6 @@ a {
     text-decoration: none;
 }
 
-a:hover, a:focus {
-    background-color: #901c1c54;
-}
-
 .logo {
     height: 50px;
 }
